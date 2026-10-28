@@ -1,3 +1,9 @@
-﻿# Borne-Again-Terminal
-A cool lil terminal made using java swing, I make a terminal using a jframe and I do some other shenanigans.
-![image](https://github.com/user-attachments/assets/09afa889-535c-4117-97a0-4dc11f6b8f6c)
+# Bourne Again Terminal (BAT)
+
+A Java Swing terminal-style desktop app with a green-on-black interface and a small set of built-in commands.
+
+## Commands
+The app supports help, clear, exit, file and directory operations, a simple text editor, and opening a website in an embedded pane.
+
+## Run
+Open the project in an IDE with Java support and run `src/TerminalApp.java`.

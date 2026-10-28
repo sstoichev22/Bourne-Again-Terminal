@@ -16,7 +16,7 @@ public class TerminalApp {
     }
 
     public TerminalApp() {
-        JFrame frame = new JFrame("Custom Terminal");
+        JFrame frame = new JFrame("Terminal");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
@@ -38,7 +38,7 @@ public class TerminalApp {
         frame.add(scrollPane, BorderLayout.CENTER);
         frame.setVisible(true);
 
-        appendOutput(terminal, "Welcome to the Custom Terminal!\n");
+        appendOutput(terminal, "Welcome to the Bourne Again Terminal(BAT)!\n");
         appendOutput(terminal, "Type 'help' for a list of commands.\n> ");
 
         terminal.setEditable(true);
@@ -225,6 +225,36 @@ public class TerminalApp {
                         appendOutput(terminal, "Error: Unable to load image. " + e.getMessage() + "\n");
                     }
                     break;
+                case "search":
+                    String[] parts = command.split(" ");
+                    if (parts.length == 2) {
+                        String url = parts[1];
+                        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                            url = "http://" + url;
+                        }
+                        try {
+                            JFrame browserFrame = new JFrame("Browser - " + url);
+                            browserFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            browserFrame.setSize(1280, 720); // Set the desired size here
+                            browserFrame.setLocationRelativeTo(null);
+
+                            JEditorPane browserPane = new JEditorPane();
+                            browserPane.setEditable(false);
+                            browserPane.setPage(new java.net.URL(url));
+
+                            JScrollPane scrollPane = new JScrollPane(browserPane);
+                            browserFrame.add(scrollPane);
+                            browserFrame.setVisible(true);
+
+                            appendOutput(terminal, "Opened " + url + " in a new window.\n");
+                        } catch (Exception e) {
+                            appendOutput(terminal, "Error: Unable to open " + url + "\n");
+                        }
+                    } else {
+                        appendOutput(terminal, "Usage: search <website>\n");
+                    }
+                    break;
+
 
 
                 default:
